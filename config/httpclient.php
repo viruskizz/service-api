@@ -3,10 +3,10 @@
 return [
 	'class' => 'yii\httpclient\Client',
 	'detectMimeType' => true, // automatically transform request to data according to response Content-Type header
-	'requestOptions' => [
+	// 'requestOptions' => [
 	// see guzzle request options documentation
-	],
-	'requestHeaders' => [
+	// ],
+	// 'requestHeaders' => [
 	// specify global request headers (can be overrided with $options on making request)
-	],
+	// ],
 ];
