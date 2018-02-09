@@ -2,6 +2,7 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$db_prod = require __DIR__ . '/db_prod.php';
 
 $config = [
     'id' => 'basic-console',
@@ -20,7 +21,7 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
+        'db' => (YII_ENV_DEV) ? $db : $db_prod,
     ],
     'params' => $params,
     /*

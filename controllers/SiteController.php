@@ -5,8 +5,6 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 
 class SiteController extends Controller
 {
@@ -34,6 +32,18 @@ class SiteController extends Controller
             ],
         ];
     }
+    
+    /**
+     * Set Before Action Reponse at HTML Format
+     *
+     * @param [type] $action
+     * @return void
+     */
+    public function beforeAction($action){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_HTML;
+        return parent::beforeAction($action);
+    }
+
     /**
      * @inheritdoc
      */

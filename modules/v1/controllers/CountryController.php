@@ -6,7 +6,7 @@ use yii\rest\ActiveController;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\HttpBearerAuth;
-
+use app\modules\v1\models\Country;
 /**
  * Country Controller API
  *
@@ -44,5 +44,21 @@ class CountryController extends ActiveController
 	 */
 	public function actionExample() {
 		return ['Hello !!'];
+	}
+
+	/**
+	 * Get Country Data
+	 */
+	public function actionSaveCountry(){
+		$post = Yii::$app->request->post();
+		if(!isset($post)){
+			throw new \yii\web\BadRequestHttpException('Missing arguments');
+		}
+		$country = new Country;
+		if($model->load($post) && $model->save()){
+			return ["success" => true, "data" => $model, "message"=> "success get data"];
+		}else{
+			return ["success" => true, "data" => $model, "message"=> "cannot save country"];
+		}
 	}
 }

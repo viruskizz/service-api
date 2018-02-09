@@ -2,6 +2,7 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$db_prod = require __DIR__ . '/db_prod.php';
 $url = require __DIR__ . '/url.php';
 $modules = require __DIR__ . '/modules.php';
 $httpclient = require __DIR__ . '/httpclient.php';
@@ -43,7 +44,7 @@ $config = [
             'format' => \yii\web\Response::FORMAT_JSON
         ],
         'httpclient' => $httpclient,
-        'db' => $db,
+        'db' => (YII_ENV_DEV) ? $db : $db_prod,
         'urlManager' => $url,
     ],
     'params' => $params,

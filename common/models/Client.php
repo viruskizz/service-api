@@ -1,11 +1,10 @@
 <?php
-namespace app\modules\v1\models;
+namespace app\common\models;
 
 use Yii;
 use \yii\db\ActiveRecord;
 use \yii\web\IdentityInterface;
 use yii\behaviors\TimestampBehavior;
-use common\components\CommonRuleHelper;
 
 class Client extends ActiveRecord implements IdentityInterface
 {

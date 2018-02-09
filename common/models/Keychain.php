@@ -1,5 +1,5 @@
 <?php
-namespace app\modules\v1\models;
+namespace app\common\models;
 use yii\db\ActiveRecord;
 
 /**
