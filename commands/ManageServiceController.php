@@ -8,6 +8,7 @@ use yii\console\Controller;
 use app\common\models\User;
 use app\common\models\Keychain;
 use app\common\models\Client;
+use app\services\models\FbwCenter;
 
 /**
  * This command echoes the first argument that you have entered.
@@ -126,5 +127,9 @@ class ManageServiceController extends Controller
             echo "access_token :>  ".$client->access_token."\n";
             echo "======================================="."\n";
         }
+    }
+    
+    public function actionTestService(){
+        print_r(FbwCenter::exampleJson());
     }
 }

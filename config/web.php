@@ -43,7 +43,8 @@ $config = [
         'response' => [
             'format' => \yii\web\Response::FORMAT_JSON
         ],
-        'httpclient' => $httpclient,
+        // 'httpclient' => $httpclient,
+        // 'httpclient' => [ 'class' => 'yii\httpclient\Client'],
         'db' => (YII_ENV_DEV) ? $db : $db_prod,
         'urlManager' => $url,
     ],
