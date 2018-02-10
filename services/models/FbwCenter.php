@@ -4,6 +4,7 @@ namespace app\services\models;
 use Yii;
 use yii\base\Model;
 use yii\helpers\Json;
+use yii\httpclient\Client;
 use app\common\models\Keychain;
 /**
  * Login form
@@ -44,9 +45,15 @@ class FbwCenter extends Model
         return $service;
     }
 
+    /**
+     * Get BaseUrl
+     * You can set base url seperate by development environment and production environment 
+     *
+     * @return string
+     */
     public static function getBaseUri(){
         if (YII_ENV_DEV) {
-            return 'http://localhost/fbw-center/web/v1/';
+            return 'http://localhost/fbw-core/api/web/v1/';
         }
         if(YII_ENV_PROD){
             return 'https://api.forbrighterworld.org/index.php/v1/';
@@ -70,12 +77,13 @@ class FbwCenter extends Model
             "gender_id" => 1,
         ];
         // use model load 
-        $model = new FbwCenter;
-        $model->load($post);
+        // $model = new FbwCenter;
+        // $model->load($post);
 
-        $uri = self::getBaseUri()."test/example-json";
+        $uri = self::getBaseUri()."tests/example-json";
         $service = self::getKeychain();
-        $response = Yii::$app->httpclient->createRequest()
+        $client = new Client;
+        $response = $client->createRequest()
             ->setUrl($uri)
             ->setMethod('post')
             ->addHeaders([ 'Authorization' => 'Bearer '.$service->access_token,'content-type' => 'application/json'])
@@ -84,6 +92,7 @@ class FbwCenter extends Model
         if($response->isOk){
             return Json::decode($response->content);
         }else{
+            print_r($response->content);
             return Json::decode($response->content);
         }
     }
@@ -96,7 +105,8 @@ class FbwCenter extends Model
     public static function exampleGet(){
         $uri = self::getBaseUri()."test/example-json";
         $service = self::getKeychain();
-        $response = Yii::$app->httpclient->createRequest()
+        $client = new Client;
+        $response = $client->createRequest()
             ->setUrl($uri)
             ->setMethod('post')
             ->setData(['user_id' => 1])

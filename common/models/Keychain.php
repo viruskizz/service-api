@@ -34,7 +34,7 @@ class Keychain extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'service_name', 'service_endpoint', 'access_token'], 'required']
+            [['service_name', 'service_endpoint', 'access_token'], 'required']
         ];
     }
 }

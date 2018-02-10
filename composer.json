@@ -1,8 +1,8 @@
 {
-    "name": "katanyoo/yii2-app-api",
+    "name": "viruskizz/service-api",
     "description": "Yii 2 API Project Template",
     "keywords": ["yii2", "framework", "api", "service", "project template"],
-    "homepage": "http://github.com/katanyoo",
+    "homepage": "http://github.com/viruskizz",
     "type": "project",
     "license": "BSD-3-Clause",
     "support": {

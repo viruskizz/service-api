@@ -2,6 +2,7 @@
 
 namespace app\modules\v1\controllers;
 
+use Yii;
 use yii\rest\ActiveController;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
@@ -33,7 +34,7 @@ class CountryController extends ActiveController
 				HttpBasicAuth::className(),
 				HttpBearerAuth::className(),
 			],
-			'except' => ['example']
+			'except' => ['example', 'save-country']
 		];
 		return $behaviors;
 	}
@@ -48,17 +49,21 @@ class CountryController extends ActiveController
 
 	/**
 	 * Get Country Data
+	 * Before use new action please update url rule in file: "config/url" 
 	 */
 	public function actionSaveCountry(){
 		$post = Yii::$app->request->post();
-		if(!isset($post)){
+		if(!isset($post['name'])){
 			throw new \yii\web\BadRequestHttpException('Missing arguments');
 		}
-		$country = new Country;
-		if($model->load($post) && $model->save()){
+		$model = new Country;
+		$model->load($post);
+		if($model->save()){
 			return ["success" => true, "data" => $model, "message"=> "success get data"];
 		}else{
-			return ["success" => true, "data" => $model, "message"=> "cannot save country"];
+			// return ["success" => false, "data" => $model, "message"=> "cannot save country"];
+			$message = implode(", ",$model->firstErrors);
+			return ["success" => false, "data" => $model, "message"=> $message];
 		}
 	}
 }
