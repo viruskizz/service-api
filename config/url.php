@@ -8,7 +8,8 @@ return [
 			'class' => 'yii\rest\UrlRule', 
 			'controller' => 'v1/country',
 			'extraPatterns' => [
-				'GET example' => 'example'
+				'GET example' => 'example',
+				'POST save-country' => 'save-country'
 			]
 		]
 	],
